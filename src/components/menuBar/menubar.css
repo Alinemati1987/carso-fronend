@@ -1,0 +1,103 @@
+button.menuBarToggler {
+  position: fixed;
+  top: 1.5rem;
+  left: 1rem;
+  border: none;
+  background: none;
+  display: flex;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s ease;
+  min-height: 100vh;
+}
+
+.menuBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 78%;
+  bottom: 0;
+  padding-top: 10%;
+  padding-left: 2.3%;
+  justify-content: left;
+  background: linear-gradient(to right, #a4161a, #0b090a);
+  font-size: 1.5rem;
+  animation: slideInFromRight 0.5s ease-out;
+  min-width: 200px;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.menuBar ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.menuBar li {
+  color: white;
+  font-weight: bold;
+  display: block;
+  margin: 0.5rem;
+  padding: 5px;
+
+  animation: slideInFromLeft 1s ease backwards;
+  animation-fill-mode: backwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translate(-5rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.menuBar a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.menuBar a:hover {
+  color: white;
+  text-shadow: 2px 2px 2px #e5383b, 2px 2px 2px;
+  transform: scale(1.2);
+}
+
+li.alone {
+  position: fixed;
+  top: 87%;
+  border: none;
+  padding-left: 3.5%;
+
+  color: white;
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 5px;
+
+  animation: slideInFromLeft 1s ease backwards;
+  animation-fill-mode: backwards;
+}
+
+li.alone:hover {
+  text-shadow: 2px 2px 2px #e5383b, 2px 2px 2px;
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
