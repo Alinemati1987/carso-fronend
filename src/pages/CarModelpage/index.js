@@ -18,5 +18,5 @@ export default function CarModelpage() {
     dispatch(fetchModelByName(name));
   }, [dispatch, name]);
 
-  return <div></div>;
+  return <div>This is for {name}</div>;
 }

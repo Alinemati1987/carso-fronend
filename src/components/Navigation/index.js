@@ -1,36 +1,52 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Menubar from "../menuBar";
+import { selectToken, selectUser } from "../../store/user/selectors";
+
+import Menubar from "../MenuBar";
+import "./navig.css";
 
 export default function Navigation() {
-  // const token = useSelector(selectToken);
-  // const { isArtist } = useSelector(selectUser);
-
-  // const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
 
   return (
     <Navbar bg="#0b090a" expand="lg" className="justify-content-center">
       <Menubar />
-      <Navbar.Brand
+      <div
         style={{
-          fontFamily: "'Comforter', cursive",
-          fontWeight: "bold",
-          fontSize: "40px",
-          color: "white",
-          "&:hover": {
-            color: "yellow",
-
-            //           text-shadow: 2px 2px 2px #e5383b, 2px 2px 2px;
-            // transform: scale(1.2);
-            // transition: all 0.2s ease;
-          },
+          position: "fixed",
+          top: "1.5rem",
+          left: "5rem",
+          fontSize: "17px",
+          paddingTop: "5px",
         }}
-        as={NavLink}
-        to="/"
       >
-        Carso
-      </Navbar.Brand>
+        {!token
+          ? null
+          : !user.isSeller
+          ? `Hello ${user.name} 🙍`
+          : `Hello ${user.name} 🤵`}
+      </div>
+
+      <div>
+        <Navbar.Brand
+          style={{
+            fontFamily: "'Comforter', cursive",
+            fontWeight: "bold",
+            fontSize: "40px",
+            color: "#e5383b",
+          }}
+          as={NavLink}
+          to="/"
+        >
+          Carso
+        </Navbar.Brand>
+      </div>
     </Navbar>
   );
+}
+
+{
 }

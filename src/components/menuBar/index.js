@@ -1,36 +1,57 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectToken } from "../../store/user/selectors";
 import "./menubar.css";
+import { logOut } from "../../store/user/actions";
 
 export default function Menubar() {
   const [open, setOpen] = useState(false);
-  const items = ["Login", "My profile", "Sign up"];
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+
+  const items = !token
+    ? [
+        { text: "Login", address: "/login" },
+        { text: "Sign up", address: "/signup" },
+      ]
+    : [{ text: "My profile", address: "/profile" }];
 
   return (
     <>
       {open && (
         <div className="menuBar">
           <ul>
-            {items.map((text, i) => {
+            {items.map((item, i) => {
               return (
                 <li key={i} style={{ animationDelay: `${150 * i}ms` }}>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpen(false);
-                    }}
-                  >
-                    {text}
-                  </a>
+                  <a href={item.address}>{item.text}</a>
                 </li>
               );
             })}
           </ul>
+
+          {!token ? null : (
+            <ul>
+              <li>
+                <button
+                  style={{ animationDelay: `200ms` }}
+                  className="bot"
+                  onClick={() => dispatch(logOut())}
+                >
+                  Log out
+                </button>
+              </li>
+            </ul>
+          )}
+
           <ul>
-            <li className="alone">About us</li>
+            <li className="alone">
+              <a href="/aboutus">About us</a>
+            </li>
           </ul>
         </div>
       )}
+
       <button
         className="menuBarToggler"
         style={{ color: open ? "white" : "#E5383B" }}

@@ -8,7 +8,7 @@ export const fetchAllCarBrands = (data) => ({
 
 export const fetchcarBrands = () => {
   return async (dispatch, getState) => {
-    const response = await axios.get(`${apiUrl}/carso`);
+    const response = await axios.get(`${apiUrl}`);
     console.log("All carBrands res is:", response.data);
     dispatch(fetchAllCarBrands(response.data));
   };
@@ -21,7 +21,7 @@ export const fetchSpecificModels = (data) => ({
 
 export const fetchModelByName = (name) => {
   return async (dispatch, getState) => {
-    const response = await axios.get(`${apiUrl}/carso/${name}`);
+    const response = await axios.get(`${apiUrl}/brands/${name}`);
     console.log("fetchModelByName res is:", response);
     dispatch(fetchSpecificModels(response.data));
   };

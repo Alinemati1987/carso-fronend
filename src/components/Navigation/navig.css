@@ -1,0 +1,11 @@
+.usLogIn {
+  /* position: absolute;
+  top: 49%;
+  left: 44%; */
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  justify-content: left;
+  justify-items: left;
+  color: white;
+}

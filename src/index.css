@@ -1,8 +1,10 @@
 body {
   color: white;
   margin: 0;
-  background: #0b090a;
-  background-size: cover;
-  font-size: calc(10px + 2vmin);
+  background-color: #0b090a;
+  /* background-size: cover; */
+  /* font-size: calc(10px + 2vmin); */
   min-width: 500px;
+  justify-content: center;
+  align-items: center;
 }

@@ -4,7 +4,6 @@ import React from "react";
 export default function Brands(props) {
   return (
     <div>
-      {/* <p>Choose your brand</p> */}
       <div>
         <ul>
           {props.brands.map((b, i) => {
