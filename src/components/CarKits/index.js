@@ -61,12 +61,12 @@ export default function CarKits(props) {
         >
           <tbody>
             <tr>
-              <td width="300px">Kit name</td>
-              <td width="150px">{props.kitName} s</td>
+              <td width="200px">Kit name</td>
+              <td width="200px">{props.kitName}</td>
             </tr>
             <tr>
               <td>Seller</td>
-              <td>----</td>
+              <td>{props.seller.companyName}</td>
             </tr>
             <tr>
               <td>Status</td>
@@ -91,7 +91,9 @@ export default function CarKits(props) {
                     }}
                   >
                     {token ? (
-                      <Link to={"/checkout"}>
+                      <Link
+                        to={`/checkout/${props.carModelId}/${props.id}/${props.seller.id}`}
+                      >
                         <Button
                           style={{
                             boxShadow:

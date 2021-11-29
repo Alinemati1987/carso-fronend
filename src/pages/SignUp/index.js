@@ -24,7 +24,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.goBack();
     }
   }, [token, history]);
 

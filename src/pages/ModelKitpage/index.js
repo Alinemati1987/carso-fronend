@@ -13,7 +13,7 @@ export default function ModelKitpage() {
   // console.log("id", id);
 
   const allFetchedData = useSelector(selectCarModelKits);
-  // console.log("Kits in page is:", kits);
+  // console.log("allFetchedData in page is:", allFetchedData);
 
   const kits = allFetchedData.map((kit, i) => kit.kit);
   console.log("Kits in page is:", kits);
@@ -35,6 +35,7 @@ export default function ModelKitpage() {
           kitName={kit.kitName}
           kitPrice={kit.kitPrice}
           seller={kit.seller}
+          carModelId={carModelId}
         />
       ))}
     </div>

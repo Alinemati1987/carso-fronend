@@ -13,6 +13,7 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import DetailsCar from "./pages/DetailedCar";
 import ModelKitpage from "./pages/ModelKitpage";
+import Checkoutpage from "./pages/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,11 @@ function App() {
           path="/kits/:modelName/:carModelId"
           component={ModelKitpage}
         />
-
+        <Route
+          exact
+          path="/checkout/:carModelId/:kitId/:sellerId"
+          component={Checkoutpage}
+        />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/loading" component={Loading} />
