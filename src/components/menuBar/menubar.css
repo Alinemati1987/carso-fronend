@@ -39,11 +39,13 @@ button.menuBarToggler {
   position: fixed;
   top: 0;
   left: 0;
-  right: 78%;
+  right: 80%;
   bottom: 0;
   padding-top: 10%;
   padding-left: 2.3%;
   justify-content: left;
+  box-shadow: 10px 10px 10px #0b090a, 30px 10px 10px #0b090a;
+
   background: linear-gradient(to right, #a4161a, #0b090a);
   font-size: 1.3rem;
   animation: slideInFromRight 0.5s ease-out;

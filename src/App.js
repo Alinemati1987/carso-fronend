@@ -11,6 +11,7 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
+import DetailsCar from "./pages/DetailedCar";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/brands/:name" component={CarModelpage} />
+        <Route exact path="/brands/:name/:id" component={DetailsCar} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/loading" component={Loading} />

@@ -3,3 +3,5 @@ export const selectCarBrands = (reduxState) =>
 
 export const selectModelDetails = (reduxState) =>
   reduxState.carBrands.modelDetails;
+
+export const selectCarById = (reduxState) => reduxState.carBrands.carDetailById;
