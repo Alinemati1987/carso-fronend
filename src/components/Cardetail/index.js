@@ -135,7 +135,7 @@ export default function Cardetail(props) {
           alignItems: "center",
         }}
       >
-        <Link to={`/kits/${props.brandId}/${props.id}`}>
+        <Link to={`/kits/${props.modelName}/${props.id}`}>
           <Button
             style={{
               boxShadow: " 5px 3px 5px lightblue , 3px 3px 3px grey",

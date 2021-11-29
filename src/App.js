@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import DetailsCar from "./pages/DetailedCar";
+import ModelKitpage from "./pages/ModelKitpage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route exact path="/brands/:name" component={CarModelpage} />
         <Route exact path="/brands/:name/:id" component={DetailsCar} />
+        <Route
+          exact
+          path="/kits/:modelName/:carModelId"
+          component={ModelKitpage}
+        />
+
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/loading" component={Loading} />
