@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import CheckoutComponent from "../../components/Checkout";
@@ -44,23 +45,46 @@ export default function Checkoutpage() {
 
   return (
     <div>
-      {specificCar &&
-        specificCar.map((k) => (
-          <CheckoutComponent
-            key={user.id}
-            modelName={k.modelName}
-            soundUrl={k.soundUrl}
-            imageUrl={k.imageUrl}
-            name={user.name}
-            phone={user.phone}
-            address={user.address}
-            email={user.email}
-            kitName={specificKit.kit.kitName}
-            companyName={specificKit.kit.seller.companyName}
-            kitimageUrl={specificKit.kit.imageUrl}
-            kitPrice={specificKit.kit.kitPrice}
-          />
-        ))}
+      <Jumbotron
+        style={{
+          height: "100px",
+          padding: "20px 40px",
+          background: "linear-gradient(to bottom, #0b090a, #a4161a)",
+          boxShadow: "0px 7px 5px #a4161a , 3px 7px 3px #0b090a",
+        }}
+      >
+        <h4
+          style={{
+            textAlign: "center",
+            fontFamily: "'Comforter', cursive",
+            fontWeight: "bolder",
+            fontSize: "30px",
+            paddingTop: "27px",
+          }}
+        >
+          Checkout
+        </h4>
+      </Jumbotron>
+      <br />
+      <Container>
+        {specificCar &&
+          specificCar.map((k) => (
+            <CheckoutComponent
+              key={user.id}
+              modelName={k.modelName}
+              soundUrl={k.soundUrl}
+              imageUrl={k.imageUrl}
+              name={user.name}
+              phone={user.phone}
+              address={user.address}
+              email={user.email}
+              kitName={specificKit.kit.kitName}
+              companyName={specificKit.kit.seller.companyName}
+              kitimageUrl={specificKit.kit.imageUrl}
+              kitPrice={specificKit.kit.kitPrice}
+            />
+          ))}
+      </Container>
     </div>
   );
 }

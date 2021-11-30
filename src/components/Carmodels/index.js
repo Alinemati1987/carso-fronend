@@ -5,18 +5,22 @@ import { Link } from "react-router-dom";
 export default function Models(props) {
   const { models } = props;
 
+  console.log(props.ribbon);
   console.log("models is :", models);
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          height: "100px",
-          padding: "20px 40px",
-          background: "linear-gradient(to bottom right, #a4161a, #0b090a)",
-        }}
-      >
-        <h4>{props.brandLogo}</h4>
+      <Jumbotron>
+        <img
+          style={{
+            width: "60%",
+            height: "60%",
+            marginLeft: "20%",
+            marginBottom: "20px",
+          }}
+          src={props.ribbon}
+          alt="Carso"
+        />
       </Jumbotron>
 
       {models.map((model, i) => (

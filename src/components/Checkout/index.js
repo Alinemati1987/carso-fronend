@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container, Form, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { selectUser } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function CheckoutComponent(props) {
   const { token } = useSelector(selectUser);
@@ -13,6 +15,18 @@ export default function CheckoutComponent(props) {
   if (token === null) {
     history.push("/");
   }
+
+  const initialOptions = {
+    "client-id":
+      "AetKN2v5JcSKAoex0T4qdtg0SwvK5-g2JRI71jz-W3aNodlrP3A0SqmHJ0yYVBnrbYTgfTCxyA71LtIc",
+    currency: "EUR",
+    intent: "sb-8y7if8779784",
+    "data-client-token": "abc123xyz==",
+  };
+
+  const handleSubmitOrder = () => {
+    console.log("This is test");
+  };
 
   return (
     <div>
@@ -187,16 +201,34 @@ export default function CheckoutComponent(props) {
                     alignItems: "center",
                   }}
                 >
-                  <Link to={`/payment`}>
-                    <Button
+                  <PayPalScriptProvider
+                    options={{
+                      "client-id":
+                        "AetKN2v5JcSKAoex0T4qdtg0SwvK5-g2JRI71jz-W3aNodlrP3A0SqmHJ0yYVBnrbYTgfTCxyA71LtIc",
+                      currency: "EUR",
+                    }}
+                  >
+                    <PayPalButtons
                       style={{
-                        boxShadow: " 5px 3px 5px lightblue , 3px 3px 3px grey",
-                        borderRadius: "30px",
+                        layout: "horizontal",
+                        shape: "pill",
+                        label: "pay",
+                        height: 50,
                       }}
-                    >
-                      Pay amount
-                    </Button>
-                  </Link>
+                      onApprove={(event) => handleSubmitOrder(event)}
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: `${props.kitPrice}`,
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                    />
+                  </PayPalScriptProvider>
                 </Container>
               </td>
             </tr>

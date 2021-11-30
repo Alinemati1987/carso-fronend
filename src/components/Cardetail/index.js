@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Button, Container, Jumbotron, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PlayPause from "../PlayButton";
 
 export default function Cardetail(props) {
+  // const audio = new Audio(props.soundUrl);
+  const audioRef = useRef();
+  const [showPlayButton, setShowPlayButton] = useState(true);
+
+  const clickbutton = () => {
+    if (showPlayButton) audioRef.current.play();
+    if (!showPlayButton) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setShowPlayButton(!showPlayButton);
+  };
   return (
     <div>
       <Jumbotron
@@ -31,7 +44,41 @@ export default function Cardetail(props) {
           />
         ) : null}
         <h2>{props.modelName}</h2>
-        <h3>{props.soundUrl}</h3>
+
+        <table>
+          <tr>
+            <th
+              style={{
+                textAlign: "center",
+                width: "200px",
+              }}
+            >
+              Listen to me
+            </th>
+            <th
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <audio ref={audioRef} src={props.soundUrl}></audio>
+              <button
+                onClick={clickbutton}
+                style={{
+                  border: "none",
+                  backgroundColor: "#E5383B",
+                  boxShadow: " 5px 3px 5px lightblue , 3px 3px 3px grey",
+                  cursor: "pointer",
+                  height: 50,
+                  outline: "none",
+                  borderRadius: "100%",
+                  width: 50,
+                }}
+              >
+                <PlayPause buttonToShow={showPlayButton ? "play" : "pause"} />
+              </button>
+            </th>
+          </tr>
+        </table>
       </Jumbotron>
       <Container>
         <Table

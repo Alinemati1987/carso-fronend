@@ -14,6 +14,7 @@ import MessageBox from "./components/MessageBox";
 import DetailsCar from "./pages/DetailedCar";
 import ModelKitpage from "./pages/ModelKitpage";
 import Checkoutpage from "./pages/Checkout";
+import Cloudinary from "./components/Cloudinary";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/loading" component={Loading} />
+        <Route path="/cloudinary" component={Cloudinary} />
       </Switch>
     </div>
   );

@@ -27,6 +27,7 @@ export default function CarModelpage() {
           name={model.brandName}
           buy={model.buyUrl}
           models={model.carModels}
+          ribbon={model.ribbonUrl}
         />
       ))}
     </div>
