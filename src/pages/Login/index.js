@@ -22,8 +22,8 @@ export default function SignUp() {
     Aos.init({ duration: 1000 });
 
     if (token !== null) {
-      window.location.reload();
       history.goBack();
+      window.location.reload();
     }
   }, [token, history]);
 
@@ -60,7 +60,7 @@ export default function SignUp() {
           {email === "" ? null : (
             <Form.Group controlId="formBasicPassword">
               <Form.Control
-                data-aos="flip-down"
+                data-aos="fade-left"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 type="password"

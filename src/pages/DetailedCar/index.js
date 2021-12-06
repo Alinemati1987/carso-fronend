@@ -6,9 +6,12 @@ import Cardetail from "../../components/Cardetail";
 import { fetchCarById } from "../../store/carBrands/actions";
 import { selectCarById } from "../../store/carBrands/selectors";
 import "./cardetail.css";
+import { selectAppLoading } from "../../store/appState/selectors";
+import Loading from "../../components/Loading";
 
 export default function DetailsCar() {
   const { name, id } = useParams();
+  const appLoading = useSelector(selectAppLoading);
 
   // console.log("name of details is:", name);
   // console.log("id of details is:", id);
@@ -24,6 +27,7 @@ export default function DetailsCar() {
   const car = carbyid.carModels;
   console.log("car is:", car);
 
+  if (appLoading) return <Loading />;
   return (
     <div>
       <Jumbotron id="carDetailJumbotron">

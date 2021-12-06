@@ -7,6 +7,8 @@ import CarKits from "../../components/CarKits";
 import { fetchkitByCarModel } from "../../store/kits/actions";
 import { selectCarModelKits } from "../../store/kits/selectors";
 import "./modelkit.css";
+import { selectAppLoading } from "../../store/appState/selectors";
+import Loading from "../../components/Loading";
 
 export default function ModelKitpage() {
   const { modelName, carModelId } = useParams();
@@ -21,11 +23,13 @@ export default function ModelKitpage() {
   console.log("Kits in page is:", kits);
 
   const dispatch = useDispatch();
+  const appLoading = useSelector(selectAppLoading);
 
   useEffect(() => {
     dispatch(fetchkitByCarModel(modelName, carModelId));
   }, [dispatch, modelName, carModelId]);
 
+  if (appLoading) return <Loading />;
   return (
     <div>
       <Jumbotron id="kitJumbotron">
