@@ -8,18 +8,23 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayPause from "../PlayButton";
 import "./checkoutComp.css";
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { updateUser } from "../../store/user/actions";
 
 export default function CheckoutComponent(props) {
   const { token } = useSelector(selectUser);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [phone, setPhone] = useState(props.phone);
+  const [address, setAddress] = useState(props.address);
+  const [username, setUsername] = useState(props.name);
 
   if (token === null) {
     history.push("/");
@@ -47,6 +52,12 @@ export default function CheckoutComponent(props) {
 
   const handleSubmitOrder = () => {
     console.log("This is test");
+  };
+
+  const saveHandler = (event) => {
+    event.preventDefault();
+
+    dispatch(updateUser(phone, address, username));
   };
 
   return (
@@ -128,18 +139,28 @@ export default function CheckoutComponent(props) {
                     <th colSpan="2">Shipping details:</th>
                   </tr>
                   <tr>
-                    <td width="50px">Reciever:</td>
-                    <td width="300px">{props.name}</td>
+                    <td width="100px">Reciever:</td>
+                    <td>
+                      <Form.Group controlId="formBasicName">
+                        <Form.Control
+                          value={username}
+                          onChange={(event) => setUsername(event.target.value)}
+                          type="name"
+                          placeholder="Enter your name"
+                          required
+                        />
+                      </Form.Group>
+                    </td>
                   </tr>
                   <tr>
                     <td>Address:</td>
                     <td>
-                      <Form.Group controlId="formBasicEmail">
+                      <Form.Group controlId="formBasicAddress">
                         <Form.Control
-                          value={props.address}
-                          onChange={(event) => console.log(event.target.value)}
-                          type="email"
-                          placeholder="Enter email"
+                          value={address}
+                          onChange={(event) => setAddress(event.target.value)}
+                          type="address"
+                          placeholder="Enter your address"
                           required
                         />
                       </Form.Group>
@@ -147,7 +168,17 @@ export default function CheckoutComponent(props) {
                   </tr>
                   <tr>
                     <td>Phone</td>
-                    <td>{props.phone}</td>
+                    <td>
+                      <Form.Group controlId="formBasicPhone">
+                        <Form.Control
+                          value={phone}
+                          onChange={(event) => setPhone(event.target.value)}
+                          type="phone"
+                          placeholder="Enter your phone number"
+                          required
+                        />
+                      </Form.Group>
+                    </td>
                   </tr>
                   <tr>
                     <td colSpan="4"></td>
@@ -155,17 +186,18 @@ export default function CheckoutComponent(props) {
                   <tr>
                     <td colSpan="2">
                       <Container className="checkoutJumbotron2">
-                        <Link to={`/save`}>
-                          <Button
-                            style={{
-                              borderRadius: "30px",
-                              marginRight: "30px",
-                            }}
-                          >
-                            Save
-                          </Button>
-                        </Link>
-                        <td
+                        <Button
+                          style={{
+                            borderRadius: "30px",
+                            marginRight: "30px",
+                          }}
+                          variant="primary"
+                          type="submit"
+                          onClick={saveHandler}
+                        >
+                          Save
+                        </Button>
+                        <span
                           style={{
                             color: "red",
                             fontStyle: "italic",
@@ -173,7 +205,7 @@ export default function CheckoutComponent(props) {
                           }}
                         >
                           * Save address and phone in my profile
-                        </td>
+                        </span>
                       </Container>
                     </td>
                   </tr>

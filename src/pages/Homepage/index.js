@@ -24,14 +24,11 @@ export default function Homepage() {
 
   return (
     <div>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <p className="parag" data-aos="fade-up">
-          Choose <br />
-          your brand
-        </p>
-      )}
+      <p className="parag" data-aos="fade-up">
+        Choose <br />
+        your brand
+      </p>
+
       <ul className="circle-container">
         {CarBrands.map((brand) => (
           <Brands

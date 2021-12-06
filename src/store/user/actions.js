@@ -1,6 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
-import { selectToken } from "./selectors";
+import { selectToken, selectUser } from "./selectors";
 import {
   appLoading,
   appDoneLoading,
@@ -30,7 +30,8 @@ export const signUp = (name, email, password, isSeller) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      console.log("GOT HERE");
+      // console.log("GOT HERE");
+      // console.log("data for sign up are:", name, email, password, isSeller);
       const response = await axios.post(`${apiUrl}/signup`, {
         name,
         email,
@@ -118,5 +119,22 @@ export const getUserWithStoredToken = () => {
       dispatch(logOut());
       dispatch(appDoneLoading());
     }
+  };
+};
+
+export const updateUser = (phone, address, username) => {
+  return async (dispatch, getState) => {
+    const { id, token } = selectUser(getState());
+
+    await axios.patch(`${apiUrl}/update/${id}`, {
+      phone: phone,
+      address: address,
+      name: username,
+    });
+    const response = await axios.get(`${apiUrl}/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log("updated user is:", response.data);
+    dispatch(loginSuccess(response.data));
   };
 };

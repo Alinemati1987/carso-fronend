@@ -12,6 +12,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -42,13 +43,24 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password, isSeller));
+    if (password === rePassword) {
+      dispatch(signUp(name, email, password, isSeller));
 
-    setEmail("");
-    setPassword("");
-    setRePassword("");
-    setName("");
-    setIsSeller(false);
+      setEmail("");
+      setPassword("");
+      setRePassword("");
+      setName("");
+      setIsSeller(false);
+    } else {
+      dispatch(
+        showMessageWithTimeout(
+          "danger",
+          true,
+          "Please enter correct password!",
+          2000
+        )
+      );
+    }
   }
 
   return (
