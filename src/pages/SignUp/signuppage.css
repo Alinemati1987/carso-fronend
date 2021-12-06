@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-#loginJumbotron {
+#signupJumbotron {
   height: 100px;
   background: linear-gradient(to bottom, #0b090a, #a4161a, #0b090a);
 
@@ -20,7 +20,7 @@
   }
 }
 
-#forh4Login {
+#forh4signup {
   text-align: center;
   font-family: "Comforter", cursive;
   font-weight: bolder;
@@ -28,11 +28,11 @@
   padding-top: 35px;
 }
 
-.linkTosignup {
+.linkTosignin {
   text-align: center;
   color: white;
   text-decoration: none;
 }
-.linkTosignup:hover {
+.linkTosignin:hover {
   color: red;
 }

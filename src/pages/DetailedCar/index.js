@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { Button, Container, Jumbotron } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import Cardetail from "../../components/Cardetail";
 import { fetchCarById } from "../../store/carBrands/actions";
 import { selectCarById } from "../../store/carBrands/selectors";
+import "./cardetail.css";
 
 export default function DetailsCar() {
   const { name, id } = useParams();
@@ -26,31 +26,14 @@ export default function DetailsCar() {
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          height: "100px",
-          padding: "20px 40px",
-          background: "linear-gradient(to bottom, #0b090a, #a4161a)",
-          boxShadow: "0px 7px 5px #a4161a , 3px 7px 3px #0b090a",
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            fontFamily: "'Comforter', cursive",
-            fontWeight: "bolder",
-            fontSize: "30px",
-            paddingTop: "27px",
-          }}
-        >
-          {carbyid.brandName}
-        </h4>
+      <Jumbotron id="carDetailJumbotron">
+        <h4 id="carDetailH4">{carbyid.brandName}</h4>
       </Jumbotron>
 
       <Container>
         {car &&
           car.map((model, i) => (
-            <div key={i}>
+            <div key={i} id="carDetailDiv">
               <Cardetail
                 acceleration={model.acceleration}
                 capacity={model.capacity}

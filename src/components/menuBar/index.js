@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import "./menubar.css";
@@ -8,6 +8,7 @@ export default function Menubar() {
   const [open, setOpen] = useState(false);
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
+  const wrapperRef = useRef(null);
 
   const items = !token
     ? [
@@ -16,8 +17,27 @@ export default function Menubar() {
       ]
     : [{ text: "My profile", address: "/profile" }];
 
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          console.log("our ref", ref.current.contains(event.target));
+          console.log("Got here");
+          setOpen(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  console.log("is it open", open);
+  useOutsideAlerter(wrapperRef);
   return (
-    <>
+    <div ref={wrapperRef}>
       {open && (
         <div className="menuBar">
           <ul>
@@ -53,7 +73,7 @@ export default function Menubar() {
       )}
 
       <button
-        className="menuBarToggler"
+        className={"menuBarToggler"}
         style={{ color: open ? "white" : "#E5383B" }}
         onClick={() => setOpen(!open)}
       >
@@ -65,6 +85,6 @@ export default function Menubar() {
           </g>
         </svg>
       </button>
-    </>
+    </div>
   );
 }

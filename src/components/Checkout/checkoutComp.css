@@ -1,0 +1,84 @@
+.checkoutJumbotron2 {
+  display: flex;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#animationOne {
+  animation: checkoutSlideleftOne 1s ease;
+  animation-fill-mode: backwards;
+  margin: auto;
+  animation-delay: 0.5s;
+}
+
+@keyframes checkoutSlideleftOne {
+  0% {
+    opacity: 0;
+    transform: translate(-5rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#checkoutPlayButton {
+  border: none;
+  background-color: #e5383b;
+  cursor: pointer;
+  height: 50px;
+  outline: none;
+  border-radius: 100%;
+  width: 50px;
+  transition: 1s;
+}
+
+#checkoutPlayButton:hover {
+  border-radius: 20%;
+  background-color: #a4161a;
+}
+
+.checkoutTableTopic {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 25px;
+  text-align: center;
+}
+
+#animationTwo {
+  animation: sliderightTwo 1s ease;
+  animation-fill-mode: backwards;
+  margin: auto;
+  animation-delay: 0.5s;
+}
+
+@keyframes sliderightTwo {
+  0% {
+    opacity: 0;
+    transform: translate(5rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#animationThree {
+  animation: slideupThree 1s ease;
+  animation-fill-mode: backwards;
+  margin: auto;
+  animation-delay: 0.5s;
+}
+
+@keyframes slideupThree {
+  0% {
+    opacity: 0;
+    transform: translate(0, 5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

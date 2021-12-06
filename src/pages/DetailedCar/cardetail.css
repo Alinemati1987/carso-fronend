@@ -1,17 +1,12 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-#loginJumbotron {
+#carDetailJumbotron {
   height: 100px;
   background: linear-gradient(to bottom, #0b090a, #a4161a, #0b090a);
 
-  animation: slidein 2s ease;
+  animation: slideright 2s ease;
   animation-fill-mode: backwards;
+  animation-delay: 0.5s;
 }
-@keyframes slidein {
+@keyframes slideright {
   0% {
     opacity: 0;
   }
@@ -20,7 +15,7 @@
   }
 }
 
-#forh4Login {
+#carDetailH4 {
   text-align: center;
   font-family: "Comforter", cursive;
   font-weight: bolder;
@@ -28,11 +23,16 @@
   padding-top: 35px;
 }
 
-.linkTosignup {
-  text-align: center;
-  color: white;
-  text-decoration: none;
+#carDetailDiv {
+  animation: slidein 1s ease;
+  animation-fill-mode: backwards;
+  animation-delay: 1s;
 }
-.linkTosignup:hover {
-  color: red;
+@keyframes slidein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,0 +1,61 @@
+#carModelRibbon {
+  width: 60%;
+  height: 60%;
+  margin-left: 20%;
+  margin-bottom: 20px;
+
+  animation: slideUptheRibbon 1s ease;
+  animation-fill-mode: backwards;
+}
+@keyframes slideUptheRibbon {
+  0% {
+    opacity: 0;
+    transform: translate(0, -6rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#carModelJumbotron {
+  width: 80%;
+  height: 80%;
+  border-radius: 30px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  animation: slidein 1s ease;
+  animation-fill-mode: backwards;
+  animation-delay: 0.5s;
+}
+@keyframes slidein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#carModelImg {
+  box-shadow: 5px 3px 5px lightblue, 3px 3px 3px grey;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+#carModelButton {
+  border-radius: 30px;
+  background-color: #e5383b;
+  border: #e5383b;
+  transition: 1s;
+}
+
+#carModelButton:hover {
+  /* border-radius: 30px; */
+  box-shadow: 5px 3px 5px white, 3px 3px 3px grey;
+  transform: scale(1.2);
+}

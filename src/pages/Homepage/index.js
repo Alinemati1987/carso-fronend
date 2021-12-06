@@ -6,6 +6,8 @@ import "./hp.scss";
 import { selectAppLoading } from "../../store/appState/selectors";
 import Loading from "../../components/Loading";
 import Brands from "../../components/Homepage";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function Homepage() {
   const dispatch = useDispatch();
@@ -16,6 +18,8 @@ export default function Homepage() {
 
   useEffect(() => {
     dispatch(fetchcarBrands());
+
+    Aos.init({ duration: 3000 });
   }, [dispatch]);
 
   return (
@@ -23,7 +27,7 @@ export default function Homepage() {
       {isLoading ? (
         <Loading />
       ) : (
-        <p className="parag">
+        <p className="parag" data-aos="fade-up">
           Choose <br />
           your brand
         </p>

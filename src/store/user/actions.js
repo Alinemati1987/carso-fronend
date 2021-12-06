@@ -30,16 +30,17 @@ export const signUp = (name, email, password, isSeller) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
+      console.log("GOT HERE");
       const response = await axios.post(`${apiUrl}/signup`, {
         name,
         email,
         password,
         isSeller,
       });
-
+      console.log("response from signup", response.data);
       dispatch(loginSuccess(response.data));
       dispatch(
-        showMessageWithTimeout("success", true, "account created", 1000)
+        showMessageWithTimeout("success", true, "account created", 2000)
       );
       dispatch(appDoneLoading());
     } catch (error) {

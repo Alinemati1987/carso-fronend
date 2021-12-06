@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { showMessageWithTimeout } from "../../store/appState/actions";
 import { selectToken } from "../../store/user/selectors";
+import "./carkit.css";
 
 export default function CarKits(props) {
   const token = useSelector(selectToken);
@@ -20,45 +21,18 @@ export default function CarKits(props) {
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          border: "solid 2px black",
-          width: "40%",
-          height: "40%",
-          borderRadius: "30px",
-          margin: "30px 30%",
-          padding: "25px",
-          textAlign: "center",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <Jumbotron id="carKitJumbo">
         {props.imageUrl ? (
           <img
             className="d-block w-100"
-            style={{
-              boxShadow: " 5px 3px 5px lightblue , 3px 3px 3px grey",
-              borderRadius: "50px",
-              marginBottom: "20px",
-            }}
+            id="carKitImage"
             src={props.imageUrl}
             alt={props.kitName}
           />
         ) : null}
       </Jumbotron>
       <Container>
-        <Table
-          striped
-          borderless
-          hover
-          variant="dark"
-          width="600px"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Table striped borderless hover variant="dark" width="600px">
           <tbody>
             <tr>
               <td width="200px">Kit name</td>
@@ -83,38 +57,15 @@ export default function CarKits(props) {
             <tr>
               <td colSpan="2">
                 {props.inStock ? (
-                  <Container
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
+                  <Container id="carKitContainer">
                     {token ? (
                       <Link
                         to={`/checkout/${props.carModelId}/${props.id}/${props.seller.id}`}
                       >
-                        <Button
-                          style={{
-                            boxShadow:
-                              " 5px 3px 5px lightblue , 3px 3px 3px grey",
-                            borderRadius: "30px",
-                            width: "100px",
-                          }}
-                        >
-                          Buy
-                        </Button>
+                        <Button id="carKitButton">Buy</Button>
                       </Link>
                     ) : (
-                      <Button
-                        style={{
-                          boxShadow:
-                            " 5px 3px 5px lightblue , 3px 3px 3px grey",
-                          borderRadius: "30px",
-                          width: "100px",
-                        }}
-                        onClick={doIt}
-                      >
+                      <Button id="carKitButton2" onClick={doIt}>
                         Buy
                       </Button>
                     )}

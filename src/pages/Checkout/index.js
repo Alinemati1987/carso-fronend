@@ -8,6 +8,7 @@ import { selectCarBrands } from "../../store/carBrands/selectors";
 import { fetchkitByCarModel } from "../../store/kits/actions";
 import { selectCarModelKits } from "../../store/kits/selectors";
 import { selectUser } from "../../store/user/selectors";
+import "./checkout.css";
 
 export default function Checkoutpage() {
   const { carModelId, kitId, sellerId } = useParams();
@@ -45,25 +46,8 @@ export default function Checkoutpage() {
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          height: "100px",
-          padding: "20px 40px",
-          background: "linear-gradient(to bottom, #0b090a, #a4161a)",
-          boxShadow: "0px 7px 5px #a4161a , 3px 7px 3px #0b090a",
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            fontFamily: "'Comforter', cursive",
-            fontWeight: "bolder",
-            fontSize: "30px",
-            paddingTop: "27px",
-          }}
-        >
-          Checkout
-        </h4>
+      <Jumbotron id="checkoutJumbotron">
+        <h4 id="checkoutH4">Checkout</h4>
       </Jumbotron>
       <br />
       <Container>

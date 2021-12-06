@@ -1,0 +1,40 @@
+#carKitJumbo {
+  width: 70%;
+  height: 70%;
+  border-radius: 30px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#carKitImage {
+  box-shadow: 5px 3px 5px lightblue, 3px 3px 3px grey;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+#carKitContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#carKitButton {
+  border-radius: 30px;
+  width: 100px;
+  transition: 1s;
+  background-color: #40916c;
+  border-color: #40916c;
+}
+
+#carKitButton:hover {
+  box-shadow: 5px 3px 5px lightblue, 3px 3px 3px grey;
+  border-radius: 30px;
+  transform: scale(1.05);
+}
+
+#carKitButton2 {
+  border-radius: 30px;
+  width: 100px;
+}

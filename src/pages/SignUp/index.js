@@ -7,6 +7,9 @@ import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col, Jumbotron } from "react-bootstrap";
+import "./signuppage.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
@@ -23,8 +26,11 @@ export default function SignUp() {
   // console.log("isseller is:", isSeller);
 
   useEffect(() => {
+    Aos.init({ duration: 1000 });
+
     if (token !== null) {
       history.goBack();
+      window.location.reload();
     }
   }, [token, history]);
 
@@ -47,83 +53,62 @@ export default function SignUp() {
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          height: "100px",
-          padding: "20px 40px",
-          background: "linear-gradient(to bottom, #0b090a, #a4161a)",
-          boxShadow: "0px 7px 5px #a4161a , 3px 7px 3px #0b090a",
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            fontFamily: "'Comforter', cursive",
-            fontWeight: "bolder",
-            fontSize: "30px",
-            paddingTop: "27px",
-          }}
-        >
-          Signup{" "}
-        </h4>
+      <Jumbotron id="signupJumbotron">
+        <h4 id="forh4signup">Signup </h4>
       </Jumbotron>
 
       <Container>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-          {/* <h2 className="mt-3 mb-4">Signup</h2> */}
           <Form.Group controlId="formBasicName">
-            <Form.Label>
-              Name
-              <span
-                style={{ color: "red", fontSize: "12px", paddingLeft: "5px" }}
-              >
-                *required
-              </span>
-            </Form.Label>
             <Form.Control
+              data-aos="flip-up"
+              className="mt-3 mb-4"
               value={name}
               onChange={(event) => setName(event.target.value)}
               type="text"
-              placeholder="Enter your name "
+              placeholder="Let us know your name "
               required
             />
           </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
             <Form.Control
+              data-aos="flip-up"
+              className="mt-3 mb-4"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               type="email"
-              placeholder="Enter your email (We'll never share your email with anyone else)"
+              placeholder="What is your email? (Be sure we'll never share your email with anyone else)"
               required
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
             <Form.Control
+              data-aos="flip-up"
+              className="mt-3 mb-4"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               type="password"
-              placeholder="Set a password"
+              placeholder="Set a remembering and strong password"
               required
             />
           </Form.Group>
 
           <Form.Group controlId="formBasicRePassword">
-            <Form.Label>Confirm Password</Form.Label>
             <Form.Control
+              data-aos="flip-up"
+              className="mt-3 mb-4"
               value={rePassword}
               onChange={(event) => setRePassword(event.target.value)}
               type="password"
-              placeholder="Re-enter your password"
+              placeholder="ٔNow try to remember your password"
               required
             />
           </Form.Group>
 
-          <Form.Group className="mt-3">
+          <Form.Group className="mt-3" data-aos="flip-up">
             <BootstrapSwitchButton
               checked={isSeller}
               onlabel="Yes"
@@ -135,8 +120,9 @@ export default function SignUp() {
             <label style={{ margin: "10px" }}>Are you a Seller?</label>
           </Form.Group>
 
-          <Form.Group className="mt-4">
+          <Form.Group className="mt-5">
             <Button
+              data-aos="fade"
               style={{ marginBottom: "5px" }}
               variant="primary"
               type="submit"
@@ -146,9 +132,11 @@ export default function SignUp() {
             </Button>
           </Form.Group>
 
-          <Form.Group className="mt-4"></Form.Group>
+          <Form.Group className="mt-3"></Form.Group>
 
-          <Link to="/login">Click here to log in</Link>
+          <Link to="/login" className="linkTosignin" data-aos="fade">
+            Click here to log in
+          </Link>
         </Form>
       </Container>
     </div>

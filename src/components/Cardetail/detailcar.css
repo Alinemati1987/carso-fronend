@@ -1,0 +1,88 @@
+#cardetailJumbotron {
+  width: 55%;
+  height: 55%;
+  margin: 10px 22.5%;
+  border-radius: 30px;
+  padding: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#cardetailImg {
+  box-shadow: 5px 3px 5px lightblue, 3px 3px 3px grey;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+#cardetailPlayButton {
+  border: none;
+  background-color: #e5383b;
+  cursor: pointer;
+  height: 50px;
+  outline: none;
+  border-radius: 100%;
+  width: 50px;
+  transition: 1s;
+}
+
+#cardetailPlayButton:hover {
+  border-radius: 20%;
+  background-color: #a4161a;
+}
+
+#cardetailJumbotron2 {
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#cardetailTable {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardetailTr {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 25px;
+}
+
+#cardetailButton {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: 1s;
+}
+
+#cardetailButton:hover {
+  box-shadow: 5px 3px 5px white, 3px 3px 3px grey;
+  transform: scale(1.2);
+}
+
+#cardetailH4 {
+  font-family: "Shadows Into Light", cursive;
+  padding-top: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  color: red;
+}
+
+#cardetailButton2 {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: 1s;
+}
+
+#cardetailButton2:hover {
+  box-shadow: 5px 3px 5px white, 3px 3px 3px grey;
+  transform: scale(1.2);
+}

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col, Jumbotron } from "react-bootstrap";
 import "./loginpage.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -17,7 +19,10 @@ export default function SignUp() {
   const history = useHistory();
 
   useEffect(() => {
+    Aos.init({ duration: 1000 });
+
     if (token !== null) {
+      window.location.reload();
       history.goBack();
     }
   }, [token, history]);
@@ -34,53 +39,41 @@ export default function SignUp() {
 
   return (
     <div>
-      <Jumbotron
-        style={{
-          height: "100px",
-          padding: "20px 40px",
-          background: "linear-gradient(to bottom, #0b090a, #a4161a)",
-          boxShadow: "0px 7px 5px #a4161a , 3px 7px 3px #0b090a",
-        }}
-      >
-        <h4
-          style={{
-            textAlign: "center",
-            fontFamily: "'Comforter', cursive",
-            fontWeight: "bolder",
-            fontSize: "30px",
-            paddingTop: "27px",
-          }}
-        >
-          Login
-        </h4>
+      <Jumbotron id="loginJumbotron">
+        <h4 id="forh4Login">Login</h4>
       </Jumbotron>
+
       <Container>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-          {/* <h2 className="mt-3 mb-4">Login</h2> */}
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
             <Form.Control
+              data-aos="fade-right"
+              className="mt-3 mb-4"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               type="email"
-              placeholder="Enter email"
+              placeholder="Enter your email"
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              type="password"
-              placeholder="Password"
-              required
-            />
-          </Form.Group>
+          {email === "" ? null : (
+            <Form.Group controlId="formBasicPassword">
+              <Form.Control
+                data-aos="flip-down"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                type="password"
+                placeholder="Enter your Password"
+                required
+              />
+            </Form.Group>
+          )}
+
           <Form.Group className="mt-5">
             <Button
-              style={{ marginBottom: "5px" }}
+              data-aos="fade"
+              style={{ marginBottom: "10px" }}
               variant="primary"
               type="submit"
               onClick={submitForm}
@@ -88,7 +81,10 @@ export default function SignUp() {
               Log in
             </Button>
           </Form.Group>
-          <Link to="/signup" style={{ textAlign: "center" }}>
+
+          <Form.Group className="mt-3"></Form.Group>
+
+          <Link to="/signup" className="linkTosignup" data-aos="fade">
             Click here to sign up
           </Link>
         </Form>

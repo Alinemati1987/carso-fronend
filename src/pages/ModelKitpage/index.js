@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import { Col, Jumbotron, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import CarKits from "../../components/CarKits";
 import { fetchkitByCarModel } from "../../store/kits/actions";
 import { selectCarModelKits } from "../../store/kits/selectors";
+import "./modelkit.css";
 
 export default function ModelKitpage() {
   const { modelName, carModelId } = useParams();
@@ -26,18 +28,29 @@ export default function ModelKitpage() {
 
   return (
     <div>
-      {kits.map((kit) => (
-        <CarKits
-          key={kit.id}
-          id={kit.id}
-          imageUrl={kit.imageUrl}
-          inStock={kit.inStock}
-          kitName={kit.kitName}
-          kitPrice={kit.kitPrice}
-          seller={kit.seller}
-          carModelId={carModelId}
-        />
-      ))}
+      <Jumbotron id="kitJumbotron">
+        <h4 id="kitH4">Sound kit</h4>
+      </Jumbotron>
+      <Row>
+        {kits.map((kit, i) => (
+          <Col
+            md="4"
+            id="kitCullomn"
+            style={{ animationDelay: `${150 * i}ms` }}
+          >
+            <CarKits
+              key={kit.id}
+              id={kit.id}
+              imageUrl={kit.imageUrl}
+              inStock={kit.inStock}
+              kitName={kit.kitName}
+              kitPrice={kit.kitPrice}
+              seller={kit.seller}
+              carModelId={carModelId}
+            />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }
