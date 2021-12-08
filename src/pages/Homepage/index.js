@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchcarBrands } from "../../store/carBrands/actions";
 import { selectCarBrands } from "../../store/carBrands/selectors";
 import "./hp.scss";
-import { selectAppLoading } from "../../store/appState/selectors";
-import Loading from "../../components/Loading";
 import Brands from "../../components/Homepage";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -13,8 +11,6 @@ export default function Homepage() {
   const dispatch = useDispatch();
   const CarBrands = useSelector(selectCarBrands);
   console.log("CarBrands are:", CarBrands);
-
-  const isLoading = useSelector(selectAppLoading);
 
   useEffect(() => {
     dispatch(fetchcarBrands());

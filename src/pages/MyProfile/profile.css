@@ -1,0 +1,38 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#profileJumbotron {
+  height: 100px;
+  background: linear-gradient(to bottom, #0b090a, #a4161a, #0b090a);
+
+  animation: slidein 2s ease;
+  animation-fill-mode: backwards;
+}
+@keyframes slidein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#forh4Profile {
+  text-align: center;
+  font-family: "Comforter", cursive;
+  font-weight: bolder;
+  font-size: 30px;
+  padding-top: 35px;
+}
+
+.linkTosignup {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+.linkTosignup:hover {
+  color: red;
+}

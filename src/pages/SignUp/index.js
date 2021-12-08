@@ -103,7 +103,7 @@ export default function SignUp() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               type="password"
-              placeholder="Set a remembering and strong password"
+              placeholder="Set a strong password that is easy to remember"
               required
             />
           </Form.Group>

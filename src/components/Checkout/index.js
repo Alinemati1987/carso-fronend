@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Col,
@@ -14,8 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayPause from "../PlayButton";
 import "./checkoutComp.css";
 
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { updateUser } from "../../store/user/actions";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 
 export default function CheckoutComponent(props) {
   const { token } = useSelector(selectUser);
@@ -30,14 +31,6 @@ export default function CheckoutComponent(props) {
     history.push("/");
   }
 
-  const initialOptions = {
-    "client-id":
-      "AetKN2v5JcSKAoex0T4qdtg0SwvK5-g2JRI71jz-W3aNodlrP3A0SqmHJ0yYVBnrbYTgfTCxyA71LtIc",
-    currency: "EUR",
-    intent: "sb-8y7if8779784",
-    "data-client-token": "abc123xyz==",
-  };
-
   const audioRef = useRef();
   const [showPlayButton, setShowPlayButton] = useState(true);
 
@@ -50,15 +43,83 @@ export default function CheckoutComponent(props) {
     setShowPlayButton(!showPlayButton);
   };
 
-  const handleSubmitOrder = () => {
-    console.log("This is test");
-  };
-
   const saveHandler = (event) => {
     event.preventDefault();
 
     dispatch(updateUser(phone, address, username));
   };
+
+  const fillDetails = () => {
+    dispatch(
+      showMessageWithTimeout(
+        "danger",
+        false,
+        "Please fill all detail fields!",
+        3000
+      )
+    );
+  };
+
+  //Here are the paypal setting
+
+  const [success, setSuccess] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState("");
+  const [orderID, setOrderID] = useState(false);
+
+  // creates a paypal order
+  const createOrder = (data, actions) => {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            description: props.kitName,
+            amount: {
+              currency: "EUR",
+              value: `${props.kitPrice}`,
+            },
+          },
+        ],
+        // not needed if a shipping address is actually needed
+        application_context: {
+          shipping_preference: "NO_SHIPPING",
+        },
+      })
+      .then((orderID) => {
+        setOrderID(orderID);
+        return orderID;
+      });
+  };
+  // check Approval
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(function (details) {
+      const { payer } = details;
+      console.log("payer is:", payer);
+      setSuccess(true);
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          ` Thank you for your purchase!, Your paypent ref. is: ${payer.payer_id}`,
+          3000
+        )
+      );
+    });
+  };
+  //capture likely error
+  const onError = (data, actions) => {
+    setErrorMessage("An Error occured with your payment ");
+  };
+
+  useEffect(() => {
+    if (success) {
+      alert("Payment successful!!");
+      history.push("/");
+    }
+  }, [success, history]);
+
+  console.log(1, orderID);
+  console.log(2, success);
+  console.log(3, ErrorMessage);
 
   return (
     <div>
@@ -242,39 +303,50 @@ export default function CheckoutComponent(props) {
 
             <Container
               style={{
-                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <PayPalScriptProvider
-                options={{
-                  "client-id":
-                    "AetKN2v5JcSKAoex0T4qdtg0SwvK5-g2JRI71jz-W3aNodlrP3A0SqmHJ0yYVBnrbYTgfTCxyA71LtIc",
-                  currency: "EUR",
-                }}
-              >
-                <PayPalButtons
+              {phone === null || address === null || username === null ? (
+                <Button
                   style={{
-                    layout: "horizontal",
-                    shape: "pill",
-                    label: "pay",
-                    height: "50px",
+                    borderRadius: "30px",
+                    width: "250px",
+                    marginLeft: "75px",
                   }}
-                  onApprove={(event) => handleSubmitOrder(event)}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: {
-                            value: `${props.kitPrice}`,
-                          },
-                        },
-                      ],
-                    });
+                  variant="primary"
+                  type="submit"
+                  onClick={fillDetails}
+                >
+                  Pay
+                </Button>
+              ) : (
+                <div
+                  style={{
+                    width: "250px",
+                    marginLeft: "75px",
                   }}
-                />
-              </PayPalScriptProvider>
+                >
+                  <PayPalScriptProvider
+                    options={{
+                      "client-id":
+                        "AWSxRlsW8vkhrNDA_dYJ9xPUMGlTlW3YBxhtbcUUmWnOdHFILnoQnftRCbZzx28Ns4BPIa5ccMcXDYqX",
+                    }}
+                  >
+                    <PayPalButtons
+                      style={{
+                        layout: "horizontal",
+                        shape: "pill",
+                        label: "pay",
+                        tagline: "false",
+                        height: 50,
+                      }}
+                      createOrder={createOrder}
+                      onApprove={onApprove}
+                    />
+                  </PayPalScriptProvider>
+                </div>
+              )}
             </Container>
           </Col>
         </Row>

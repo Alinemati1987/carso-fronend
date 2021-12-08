@@ -1,4 +1,5 @@
-body {
+body,
+html {
   color: white;
   margin: 0;
   background-color: #0b090a;
@@ -7,4 +8,6 @@ body {
   min-width: 500px;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
