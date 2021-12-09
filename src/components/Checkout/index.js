@@ -307,7 +307,12 @@ export default function CheckoutComponent(props) {
                 alignItems: "center",
               }}
             >
-              {phone === null || address === null || username === null ? (
+              {phone === null ||
+              phone === "" ||
+              address === null ||
+              address === "" ||
+              username === null ||
+              username === "" ? (
                 <Button
                   style={{
                     borderRadius: "30px",

@@ -1,0 +1,280 @@
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Jumbotron,
+  Row,
+  Table,
+} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
+import "./profileCompo.css";
+import { selectToken, selectUser } from "../../store/user/selectors";
+
+export default function ProfileCompo() {
+  const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+  const token = useSelector(selectToken);
+
+  const { email, id } = user;
+
+  console.log("user in profile is", user);
+
+  const [name, setName] = useState(user.name);
+  const [phone, setPhone] = useState(user.phone);
+  const [address, setAddress] = useState(user.address);
+  const [password, setPassword] = useState(user.password);
+  const [rePassword, setRePassword] = useState("");
+
+  console.log("name is", name);
+  console.log("email is:", email);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/");
+    }
+  }, [token, history]);
+
+  return (
+    <div>
+      <Container>
+        <Table striped borderless hover variant="dark" width="600px">
+          <tbody>
+            <tr className="checkoutTableTopic">
+              <th colSpan="2">Shipping details:</th>
+            </tr>
+            <tr>
+              <td width="100px">Reciever:</td>
+              <td>
+                <Form.Group controlId="formBasicName">
+                  <Form.Control
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    type="name"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td>Address:</td>
+              <td>
+                <Form.Group controlId="formBasicAddress">
+                  <Form.Control
+                    // value={address}
+                    // onChange={(event) => setAddress(event.target.value)}
+                    type="address"
+                    placeholder="Enter your address"
+                    required
+                  />
+                </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>
+                <Form.Group controlId="formBasicPhone">
+                  <Form.Control
+                    // value={phone}
+                    // onChange={(event) => setPhone(event.target.value)}
+                    type="phone"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </Form.Group>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="4"></td>
+            </tr>
+          </tbody>
+        </Table>
+      </Container>
+
+      {/* old data */}
+      {/* old data */}
+      <Container id="profileCompoContainer">
+        <Row>
+          <Col>
+            <Jumbotron as={Col} className="mt-5">
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="3" style={{ fontWeight: "bold" }}>
+                  Email
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    style={{ color: "white" }}
+                    plaintext
+                    readOnly
+                    // defaultValue={email}
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3" controlId="formBasicName">
+                <Form.Label
+                  column
+                  sm="3"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Name
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    // value={username}
+                    // onChange={(event) => setUsername(event.target.value)}
+                    type="name"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </Col>
+              </Form.Group>
+            </Jumbotron>
+          </Col>
+          <Col>
+            <Form as={Col} className="mt-5">
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicAddress"
+              >
+                <Form.Label
+                  column
+                  sm="3"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Address
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="address"
+                    placeholder="Enter your address"
+                    // value={address}
+                    // onChange={(event) => setAddress(event.target.value)}
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3" controlId="formBasicPhone">
+                <Form.Label
+                  column
+                  sm="3"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Phone no.
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="phone"
+                    placeholder="Enter your phone number"
+                    // value={phone}
+                    // onChange={(event) => setPhone(event.target.value)}
+                  />
+                </Col>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Form as={Col} className="mt-5">
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicPassword"
+              >
+                <Form.Label
+                  column
+                  sm="3"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  New password
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter new password"
+                    // value={password}
+                    // onChange={(event) => setPassword(event.target.value)}
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicPassword"
+              >
+                <Form.Label
+                  column
+                  sm="3"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Re. new password
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirm your new password"
+                    // onChange={(event) => setRePassword(event.target.value)}
+                  />
+                </Col>
+              </Form.Group>
+            </Form>
+          </Col>
+          <Col>
+            <Form as={Col} className="mt-5">
+              <Form.Group className="mt-3">
+                <Form.Label> </Form.Label>
+                <Row>
+                  <Col style={{ marginLeft: "50px" }}>
+                    <Button
+                      id="profileCompoButton"
+                      variant="primary"
+                      type="submit"
+                      //   onClick={updateProfile}
+                    >
+                      Save
+                    </Button>
+                  </Col>
+
+                  <Col style={{ marginRight: "50px" }}>
+                    <Button
+                      id="profileCompoButton"
+                      variant="danger"
+                      type="submit"
+                      //   onClick={deleteProfile}
+                    >
+                      Delete account
+                    </Button>
+                  </Col>
+                </Row>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+}

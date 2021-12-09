@@ -14,7 +14,6 @@ export default function Homepage() {
 
   useEffect(() => {
     dispatch(fetchcarBrands());
-
     Aos.init({ duration: 3000 });
   }, [dispatch]);
 

@@ -15,15 +15,15 @@
 }
 
 #profileCompoButton {
-  margin-left: 175px;
-  margin-top: 40px;
   border: none;
   cursor: pointer;
   border-radius: 20px;
   width: 150px;
   transition: 1s;
+  margin: 5px auto;
 }
 
 #profileCompoButton:hover {
   box-shadow: 0px 0px 10px white, 0px 0px 10px white;
+  transform: scale(1.1);
 }

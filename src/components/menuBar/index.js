@@ -15,7 +15,7 @@ export default function Menubar() {
         { text: "Login", address: "/login" },
         { text: "Sign up", address: "/signup" },
       ]
-    : [{ text: "My profile", address: "/profile" }];
+    : [{ text: "My profile", address: "/myprofile" }];
 
   function useOutsideAlerter(ref) {
     useEffect(() => {

@@ -67,7 +67,7 @@ export const login = (email, password) => {
       });
 
       dispatch(loginSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "welcome back!", 500));
+      dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -122,7 +122,7 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-export const updateUser = (phone, address, username) => {
+export const updateUser = (phone, address, username, password) => {
   return async (dispatch, getState) => {
     const { id, token } = selectUser(getState());
 
@@ -130,11 +130,15 @@ export const updateUser = (phone, address, username) => {
       phone: phone,
       address: address,
       name: username,
+      password: password,
     });
     const response = await axios.get(`${apiUrl}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     console.log("updated user is:", response.data);
     dispatch(loginSuccess(response.data));
+    dispatch(
+      showMessageWithTimeout("success", false, "Your profile is updated!", 2000)
+    );
   };
 };

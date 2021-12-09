@@ -24,14 +24,13 @@ export default function SignUp() {
   const token = useSelector(selectToken);
   const history = useHistory();
 
-  // console.log("isseller is:", isSeller);
+  // console.log("name is:", name);
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
 
     if (token !== null) {
-      history.goBack();
-      window.location.reload();
+      history.push("/");
     }
   }, [token, history]);
 

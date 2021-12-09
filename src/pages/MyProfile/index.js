@@ -1,28 +1,32 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import ProfileCompo from "../../components/MyProfile";
+import MyProfileCompo from "../../components/MyProfile";
 import { selectUser } from "../../store/user/selectors";
-import "./profile.css";
+import "./MyProfile.css";
 
 export default function MyProfile() {
-  const User = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  console.log("user is:", user);
 
-  console.log("user in profile is", User);
+  const { name } = user;
 
   return (
     <div>
       <Jumbotron id="profileJumbotron">
-        <h4 id="forh4Profile">My profile</h4>
-        <ProfileCompo
-          id={User.id}
-          address={User.address}
-          email={User.email}
-          name={User.name}
-          phone={User.phone}
-          token={User.token}
-        />
+        <h4 id="profileH4">{name}'s profile</h4>
       </Jumbotron>
+
+      {user && (
+        <MyProfileCompo
+          id={user.id}
+          address={user.address}
+          email={user.email}
+          name={user.name}
+          phone={user.phone}
+          token={user.token}
+        />
+      )}
     </div>
   );
 }

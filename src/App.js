@@ -47,7 +47,7 @@ function App() {
         />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={MyProfile} />
+        <Route path="/myprofile" component={MyProfile} />
         <Route path="/loading" component={Loading} />
         <Route path="/cloudinary" component={Cloudinary} />
       </Switch>

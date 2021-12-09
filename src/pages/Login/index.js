@@ -19,12 +19,12 @@ export default function SignUp() {
   const history = useHistory();
 
   useEffect(() => {
-    Aos.init({ duration: 1000 });
-
     if (token !== null) {
-      history.goBack();
-      window.location.reload();
+      // window.location = document.referrer;
+      // history.goBack();
+      window.location.reload(history.goBack());
     }
+    Aos.init({ duration: 1000 });
   }, [token, history]);
 
   function submitForm(event) {
