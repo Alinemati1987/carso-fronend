@@ -3,18 +3,23 @@ import { Button, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { showMessageWithTimeout } from "../../store/appState/actions";
-import { updateUser } from "../../store/user/actions";
+import { deleteUser, updateUser } from "../../store/user/actions";
 import "./profile.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function MyProfileCompo(props) {
-  const { token, email } = props;
+  const { id, token, email } = props;
   console.log("token is:", token);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  if (token === null) {
-    history.push("/");
-  }
+  useEffect(() => {
+    if (token === null) {
+      history.push("/");
+    }
+    Aos.init({ duration: 1000 });
+  }, [token, history]);
 
   const initialName = props.name;
   const initialPhone = props.phone;
@@ -59,6 +64,20 @@ export default function MyProfileCompo(props) {
       );
     }
   };
+
+  const [showDelete, setShowDelete] = useState(false);
+  const [declare, setDeclare] = useState(false);
+
+  const handleChange = () => {
+    setDeclare(!declare);
+  };
+
+  const deleteProfile = () => {
+    !declare ? setShowDelete(!showDelete) : dispatch(deleteUser(id));
+  };
+
+  console.log("declare is:", declare);
+  console.log("showDelete is:", showDelete);
 
   return (
     <div>
@@ -232,11 +251,28 @@ export default function MyProfileCompo(props) {
                     <Button
                       id="profileCompoButton"
                       variant="danger"
-                      type="submit"
-                      //   onClick={deleteProfile}
+                      // type="submit"
+                      onClick={deleteProfile}
                     >
-                      Delete account
+                      {!showDelete
+                        ? "Delete account"
+                        : showDelete && !declare
+                        ? "Cancel"
+                        : "Delete account"}
                     </Button>
+                    <div className="validationForm">
+                      {showDelete ? (
+                        <Form.Check
+                          data-aos="flip-left"
+                          required
+                          name="terms"
+                          label="Agree to terms and conditions"
+                          onChange={handleChange}
+                          id="validationFormik106"
+                        />
+                      ) : null}
+                    </div>
+
                     {/* </Col> */}
                   </Row>
                 </Form.Group>

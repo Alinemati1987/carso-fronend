@@ -142,3 +142,21 @@ export const updateUser = (phone, address, username, password) => {
     );
   };
 };
+
+export const deleteUser = (id) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+    console.log("token is", token);
+
+    console.log("Delete action run");
+
+    await axios.delete(`${apiUrl}/user/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    dispatch(logOut());
+    dispatch(
+      showMessageWithTimeout("success", false, "Your account is deleted!", 2000)
+    );
+  };
+};
