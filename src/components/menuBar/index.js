@@ -12,10 +12,14 @@ export default function Menubar() {
 
   const items = !token
     ? [
+        { text: "All Cars", address: "/allcars" },
         { text: "Login", address: "/login" },
         { text: "Sign up", address: "/signup" },
       ]
-    : [{ text: "My profile", address: "/myprofile" }];
+    : [
+        { text: "All Cars", address: "/allcars" },
+        { text: "My profile", address: "/myprofile" },
+      ];
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -66,7 +70,7 @@ export default function Menubar() {
 
           <ul>
             <li className="alone">
-              <a href="/aboutus">About us</a>
+              <a href="/aboutme">About me</a>
             </li>
           </ul>
         </div>

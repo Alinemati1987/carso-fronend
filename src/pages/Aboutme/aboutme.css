@@ -1,0 +1,195 @@
+#whole {
+  font-family: "Nunito", sans-serif;
+  color: whitesmoke;
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://res.cloudinary.com/dkdzt4lca/image/upload/v1639100391/Carso/ali_ck05tq.png");
+  background-size: cover;
+}
+
+#aboutmeh1 {
+  position: absolute;
+  margin-left: 15px;
+  top: 40%;
+  left: 40%;
+}
+
+#aboutmeh1:hover,
+#aboutmeh2:hover {
+  font-weight: 300%;
+  text-shadow: 5px 3px 5px black, 5px 3px 5px grey;
+  transition: 1.5s;
+  cursor: wait;
+}
+
+#aboutmeh2 {
+  position: absolute;
+  margin-left: 15px;
+  top: 55%;
+  left: 40%;
+}
+
+.aboutmeul {
+  list-style-type: none;
+  /* margin: auto; */
+  margin-left: 150px;
+}
+
+.aboutmebutton {
+  background-color: none;
+}
+
+.secondAnimation:hover {
+  transition: 1.5s;
+  width: fit-content;
+  height: fit-content;
+  text-shadow: black 2px 0;
+  box-shadow: 5px 3px 5px black, 5px 3px 5px grey;
+  border-radius: 25px;
+}
+
+.secondAnimation {
+  margin-top: 50px;
+  float: left;
+  padding: 10px 20px;
+  font-weight: bold;
+  position: relative;
+  left: -100%;
+  animation-duration: 3s;
+  animation-delay: 2.5s;
+  animation-name: comingmenu;
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+@keyframes comingmenu {
+  from {
+    left: -35%;
+  }
+
+  to {
+    left: 28%;
+  }
+}
+
+.firstAnimation {
+  animation-duration: 3s;
+  animation-delay: 2.5s;
+  animation-name: comein;
+  animation-fill-mode: forwards;
+}
+@keyframes comein {
+  from {
+    left: 40%;
+  }
+
+  to {
+    left: 1%;
+  }
+}
+
+.aboutmeimg {
+  width: 20px;
+  height: 20px;
+  /* margin: 20px; */
+  text-align: center;
+  vertical-align: middle;
+  transition: 1s;
+}
+
+.aboutmea {
+  text-decoration: none;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 19px;
+  color: darkslategrey;
+  vertical-align: middle;
+}
+
+.aboutmeimg:hover {
+  transform: scale(1.5);
+}
+
+#popupText {
+  text-align: justify;
+  width: 360px;
+  height: auto;
+  color: darkslategrey;
+  padding: 15px;
+  margin: 0 auto;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  border-radius: 20px;
+  box-shadow: 5px 3px 5px gray, 5px 3px 5px green;
+  line-height: 125%;
+  animation: linear;
+  animation-name: aboutme;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes aboutme {
+  from {
+    background-color: none;
+  }
+
+  to {
+    background-color: rgba(226, 236, 250, 0.4);
+  }
+}
+
+#education {
+  width: 360px;
+  height: auto;
+  color: darkslategrey;
+  padding: 15px;
+  margin: auto;
+
+  position: absolute;
+  top: 44%;
+  left: 40%;
+  border-radius: 20px;
+  box-shadow: 5px 3px 5px gray, 5px 3px 5px green;
+  line-height: 125%;
+  animation: linear;
+  animation-name: idid;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes idid {
+  from {
+    background-color: none;
+  }
+
+  to {
+    background-color: rgba(226, 236, 250, 0.4);
+  }
+}
+
+#contact {
+  width: 360px;
+  height: auto;
+  padding: 15px;
+  margin: auto;
+  position: absolute;
+  top: 47%;
+  left: 40%;
+  border-radius: 20px;
+  box-shadow: 5px 3px 5px gray, 5px 3px 5px green;
+  line-height: 125%;
+  text-align: center;
+  animation: linear;
+  animation-name: contactme;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes contactme {
+  from {
+    background-color: none;
+  }
+
+  to {
+    background-color: rgba(226, 236, 250, 0.4);
+  }
+}

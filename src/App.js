@@ -16,6 +16,8 @@ import ModelKitpage from "./pages/ModelKitpage";
 import Checkoutpage from "./pages/Checkout";
 import Cloudinary from "./components/Cloudinary";
 import MyProfile from "./pages/MyProfile";
+import AllCars from "./pages/AllCars";
+import Aboutme from "./pages/Aboutme";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +52,8 @@ function App() {
         <Route path="/myprofile" component={MyProfile} />
         <Route path="/loading" component={Loading} />
         <Route path="/cloudinary" component={Cloudinary} />
+        <Route path="/allcars" component={AllCars} />
+        <Route path="/aboutme" component={Aboutme} />
       </Switch>
     </div>
   );
