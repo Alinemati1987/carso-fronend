@@ -12,12 +12,12 @@ export default function Menubar() {
 
   const items = !token
     ? [
-        { text: "All Cars", address: "/allcars" },
+        // { text: "All Cars", address: "/allcars" },
         { text: "Login", address: "/login" },
         { text: "Sign up", address: "/signup" },
       ]
     : [
-        { text: "All Cars", address: "/allcars" },
+        // { text: "All Cars", address: "/allcars" },
         { text: "My profile", address: "/myprofile" },
       ];
 

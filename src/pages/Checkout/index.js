@@ -55,6 +55,7 @@ export default function Checkoutpage() {
           specificCar.map((k) => (
             <CheckoutComponent
               key={user.id}
+              id={user.id}
               modelName={k.modelName}
               soundUrl={k.soundUrl}
               imageUrl={k.imageUrl}
@@ -62,6 +63,7 @@ export default function Checkoutpage() {
               phone={user.phone}
               address={user.address}
               email={user.email}
+              kitId={specificKit.kit.id}
               kitName={specificKit.kit.kitName}
               companyName={specificKit.kit.seller.companyName}
               kitimageUrl={specificKit.kit.imageUrl}

@@ -95,6 +95,7 @@ export default function CheckoutComponent(props) {
       const { payer } = details;
       console.log("payer is:", payer);
       setSuccess(true);
+
       dispatch(
         showMessageWithTimeout(
           "success",

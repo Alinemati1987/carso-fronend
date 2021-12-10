@@ -30,7 +30,7 @@ export default function SignUp() {
     Aos.init({ duration: 1000 });
 
     if (token !== null) {
-      history.push("/");
+      history.push("/myprofile");
     }
   }, [token, history]);
 
